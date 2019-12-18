@@ -10,24 +10,28 @@ class Edit extends Component {
   }
 
   componentDidMount () {
-    console.log('拿父亲的',this.props.like)
+    const {startHobby} = this.props
+    window.console.log('拿父亲的hobby',startHobby)
   }
 
   change = (e) => {
     e.preventDefault()
-    // console.log(11, e.target.value)
     this.setState({
       likes:e.target.value
     })
   }
 
   save = () => {
-    this.props.childFun(this.state.likes)
+    const { likes } = this.state
+    const { childFun } = this.props
+    // this.props.childFun(likes)
+    childFun(likes)
+    this.setState({
+      likes:''
+    })
   }
 
   render () {
-    const { like } = this.props
-    console.log('like',like)
     return (
       <div>
         <Input maxLength={10} placeholder="输入" style={{ width: '200px' }} onChange={this.change} />
