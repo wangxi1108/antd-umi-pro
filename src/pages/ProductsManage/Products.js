@@ -54,6 +54,11 @@ class Products extends Component {
     // console.log('正确时间', dateString);
   }
 
+  // 选择框写法
+  // handleSelectChange = (val,aa) => {
+  //   console.log(11,val,aa)
+  // }
+
 // 查询-------点击两次才？？？
   handleSubmit = e => {
     e.preventDefault();
@@ -123,7 +128,8 @@ class Products extends Component {
     this.setState({
       addVisible: false,
     });
-    console.log(values,22,this.addform)
+    console.log(values, 22, values.addform)
+    
   };
 
   handleCancel = e => {
@@ -202,7 +208,6 @@ class Products extends Component {
               <Select
                 className={styles.width200}
                 placeholder="请选择"
-                onChange={this.handleSelectChange}
               >
                 {
                   statusType.map((ele,index) => (
