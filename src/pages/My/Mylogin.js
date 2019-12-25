@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button } from 'antd';
 import { connect } from 'dva'
-import config from '../../../config/myweb.config'
+// import config from '../../../config/myweb.config'
 
 import styles from './Mylogin.less';
 
@@ -20,12 +20,9 @@ class NormalLoginForm extends Component {
 // 获取token
   getTokenFun = () => {
     const { dispatch, form, location } = this.props
-    const code = 'GSGgzZ'
-    console.log('config',config)
     dispatch({
       type: 'myLoginMo/getTokenData',
       payload: {
-        code,
         grant_type: config.grantType,
         client_id: config.clientId,
         client_secret: config.clientSecret,
@@ -57,20 +54,14 @@ class NormalLoginForm extends Component {
       //   console.log('Received values of form: ', values);
       // }
       dispatch({
-        type: 'myLoginMo/getLoginData',
+        type: 'myLoginMo/getTokenData',
         payload: {
-          client_id: 'jwell-oms',
-          scope: 'all',
-          response_type: 'code',
-          state: '',// $('#state').val(),
-          redirect_uri: 'http://localhost:3002/Callback',
-          Username: values.username,
-          Password: values.password,
-          VerifyCodeToken: 'mtfz',// 验证码
-          VerifyCode: 'mtfz'
+          username: values.username,
+          password: values.password,
+          remember_me: true
         }
       }).then(res => {
-        console.log('登录111',res)
+        console.log('点击登录',res)
         // if (res.success) {
           // userLogin().then((res) => {
           //   if (res === 'done') {
