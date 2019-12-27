@@ -30,19 +30,34 @@ class NormalLoginForm extends Component {
           password: values.password,
           remember_me: true
         }
+      }).then((res) => {
+        console.log('点击登录', res)
+        // console.log('props--', this.props)
+        if (res) {
+          dispatch({
+            type: 'myLoginMo/getMenuData',
+            payload: {
+              token: res.token
+            }
+          })
+        }
       })
         // .then(res => {
-        // console.log('点击登录',res)
+        //   console.log('点击登录callback', res)
         // if (res.success) {
-          // userLogin().then((res) => {
-          //   if (res === 'done') {
-          //     this.props.dispatch({ type: 'app/updateState', payload: { isLogin: true } })
-          //     const callbackUrl = storage.getItem('callback_url') || '/'
-          //     router.replace(callbackUrl)
-          //   }
-          // })
+        //   userLogin().then((res) => {
+        //     if (res === 'done') {
+        //       this.props.dispatch({ type: 'app/updateState', payload: { isLogin: true } })
+        //       const callbackUrl = storage.getItem('callback_url') || '/'
+        //       router.replace(callbackUrl)
+        //     }
+        //   })
         // }
       // })
+
+      // const { userInfo } = this.state
+      // console.log('userInfo---',userInfo)
+      
       
     });
 

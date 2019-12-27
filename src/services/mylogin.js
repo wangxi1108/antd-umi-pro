@@ -45,3 +45,11 @@ export function getToken(params) {
     data: params
   })
 }
+
+export function getMenu(parameter) {
+  return request({
+    url: '/sys/permission/getUserPermissionByToken',
+    method: 'get',
+    params:parameter
+  })
+}

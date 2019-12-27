@@ -216,7 +216,7 @@ const service = axios.create({
   }
 })
 service.interceptors.request.use(req => {
-  // console.log(req)
+  console.log('req11',req)
   const token = Cookie.get('token')
   if (token) {
     req.headers[ 'X-Access-Token' ] = token 
