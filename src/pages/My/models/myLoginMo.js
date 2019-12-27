@@ -17,16 +17,13 @@ export default {
     //   console.log('getLoginData', res)
     // },
     *getTokenData ({ payload }, { call }) {
-      console.log('getTokenData-参数', payload)
+      // console.log('getTokenData-参数', payload)
       const res = yield call(getToken, payload)
-      console.log('getTokenData', res)
-      if (res.token) {
-        Cookie.set('token', res.token)
-        // router.replace(payload.pathname)
-        return { success: true }
-      } 
-        // message.error('获取令牌失败，请重新登录')
-        return { success: false }
+      console.log('getTokenData', res) 
+      if (res.success) {
+        Cookie.set('token', res.result.token)
+      }
+      //   // router.replace(payload.pathname)
     }
     // *getUserinfoData({ payload, callback }, { call, put }) {
     //   const res = yield call(getUserInfo)

@@ -202,9 +202,11 @@
 
 
 import axios from 'axios'
-import qs from 'qs'
+// import qs from 'qs'
 import Cookie from 'js-cookie'
+import { message } from 'antd'
 import config from '../../config/myweb.config'
+
 
 const service = axios.create({
   baseURL:config.BASE_API,
@@ -233,23 +235,30 @@ service.interceptors.request.use(req => {
 
 service.interceptors.response.use(
   response => { 
-    console.log('请求返回成功的response',response)
-    // const {data} = response
-    const {token} = response.result
-    switch (response.code) {
-      case 403:
-        console.log('报403')
-        break
-      case 500:
-        console.log('报403')
-      default:
-        console.log('default')
-        break
+    console.log('请求返回成功的response', response)
+    if (response.data.code===500) {
+      message.error(response.data.message)
     }
     return response.data
   },
   error => {
-    console.log('请求返回的失败的error',error)
+    console.log('请求返回的失败的error', error)
+    const data = error.response
+    switch (data.status) {
+      case 403:
+        message.error('报403')
+        break
+      case 404:
+        message.error('报404')
+      break
+      case 500:
+        message.error('报500')
+        break
+      default:
+        message.error(data.data.message)
+        break
+    }
+
     return Promise.reject(error)
   }
 

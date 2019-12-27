@@ -12,47 +12,17 @@ class NormalLoginForm extends Component {
   // constructor(props){
   //   super(props)
   // }
- 
-  componentDidMount () { 
-    // this.getTokenFun()
-  }
 
-// 获取token
-  getTokenFun = () => {
-    const { dispatch, form, location } = this.props
-    dispatch({
-      type: 'myLoginMo/getTokenData',
-      payload: {
-        grant_type: config.grantType,
-        client_id: config.clientId,
-        client_secret: config.clientSecret,
-        redirect_uri: 'www.baidu.com',// 'http://localhost:3002/Callback',
-        // encodeURI(`${window.location.origin}${window.location.pathname}`),
-        scope: config.oauthScope,
-        pathname:'/Callback'// this.props.location.pathname
-      }
-    })
-      .then(res => {
-      if (res.success) {
-        console.log('登录页获取token ')
-        // userLogin().then((res) => {
-        //   if (res === 'done') {
-        //     this.props.dispatch({ type: 'app/updateState', payload: { isLogin: true } })
-        //     const callbackUrl = storage.getItem('callback_url') || '/'
-        //     router.replace(callbackUrl)
-        //   }
-        // })
-      }
-    })
+  componentDidMount () { 
   }
 
   handleSubmit = e => {
     e.preventDefault();
     const { dispatch, form, location } = this.props
     form.validateFields((err, values) => {
-      // if (!err) {
-      //   console.log('Received values of form: ', values);
-      // }
+      if (err) {
+          return
+      }
       dispatch({
         type: 'myLoginMo/getTokenData',
         payload: {
@@ -60,8 +30,9 @@ class NormalLoginForm extends Component {
           password: values.password,
           remember_me: true
         }
-      }).then(res => {
-        console.log('点击登录',res)
+      })
+        // .then(res => {
+        // console.log('点击登录',res)
         // if (res.success) {
           // userLogin().then((res) => {
           //   if (res === 'done') {
@@ -71,10 +42,9 @@ class NormalLoginForm extends Component {
           //   }
           // })
         // }
-      })
+      // })
       
     });
-
 
   };
 
