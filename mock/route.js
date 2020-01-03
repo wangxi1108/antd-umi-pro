@@ -238,6 +238,17 @@ export default {
           }
         ],
       },
+      {
+        name: 'SafetyTest',
+        icon: 'highlight',
+        path: '/SafetyTest',
+        routes: [
+          {
+            path: '/SafetyTest/Index',
+            name: 'SafetyTestIndex',
+          }
+        ],
+      },
     ],
   },
 };

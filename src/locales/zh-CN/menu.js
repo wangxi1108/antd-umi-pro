@@ -46,6 +46,8 @@ export default {
   "menu.productsManage.products": '商品',
   "menu.my": "我的",
   "menu.my.mylogin": "登录",
-  "menu.productsManage.ProductDetail":"商品详情"
+  "menu.productsManage.ProductDetail": "商品详情",
+  "menu.SafetyTest": "安全管理",
+  "menu.SafetyTest.SafetyTestIndex":"数据列表"
 };
 
